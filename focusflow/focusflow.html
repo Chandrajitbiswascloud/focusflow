@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>FocusFlow — The Focus & Habit Economy</title>
+  <meta name="description" content="Gamify your discipline. Earn credits from habits and focused study, spend them to unlock distractive apps and rewards.">
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#8B5CF6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="./icon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-obsidian-bg text-slate-200 min-h-screen relative font-body overflow-x-hidden">
+
+  <!-- Background Glow Elements -->
+  <div class="absolute w-[500px] h-[500px] bg-emerald-500/10 top-[-10%] left-[-10%] rounded-full blur-[100px] pointer-events-none z-0"></div>
+  <div class="absolute w-[600px] h-[600px] bg-violet-600/15 bottom-[-20%] right-[-10%] rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+  <!-- React Application Mounting Target -->
+  <div id="root" class="relative z-10"></div>
+
+  <!-- Vite module entry point -->
+  <script type="module" src="/src/dashboard/main.jsx"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => {
+            console.log('FocusFlow Service Worker registered successfully:', reg.scope);
+          })
+          .catch((err) => {
+            console.warn('FocusFlow Service Worker registration failed:', err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

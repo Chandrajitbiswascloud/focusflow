@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "FocusFlow - Blocker Extension",
+  "version": "1.0",
+  "description": "Enforce your focus habits. Blocks distracting sites until unlocked with FocusFlow credits.",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://localhost:5000/*",
+    "*://*.instagram.com/*",
+    "*://*.facebook.com/*",
+    "*://*.youtube.com/*",
+    "*://*.twitter.com/*",
+    "*://*.x.com/*",
+    "*://*.tiktok.com/*",
+    "*://*.reddit.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "file:///*",
+        "http://localhost/*",
+        "http://127.0.0.1/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_title": "FocusFlow Blocker"
+  }
+}

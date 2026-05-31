@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow — Access Guard</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #080B11;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #F3F4F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .glow-bg {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glass-panel {
+      background: rgba(13, 18, 30, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Glow Overlays -->
+  <div class="glow-bg w-[400px] h-[400px] bg-red-500/10 -top-10 -left-10"></div>
+  <div class="glow-bg w-[500px] h-[500px] bg-violet-600/10 -bottom-10 -right-10"></div>
+
+  <!-- Blocked Card -->
+  <div class="relative z-10 w-full max-w-md mx-4 p-8 rounded-3xl glass-panel text-center flex flex-col items-center">
+    <!-- Logo Icon -->
+    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-violet-600 to-red-500 flex items-center justify-center font-heading font-bold text-3xl text-white shadow-lg shadow-violet-500/20 mb-6">
+      F
+    </div>
+
+    <!-- Main Message -->
+    <h1 class="font-heading font-bold text-2xl tracking-tight text-white mb-2">
+      Access Restricted
+    </h1>
+    
+    <p class="text-sm text-slate-400 font-body mb-6">
+      FocusFlow locked <span id="blocked-domain" class="font-semibold text-red-400">this website</span> to protect your focus.
+    </p>
+
+    <!-- Visual divider -->
+    <div class="w-full h-[1px] bg-white/5 mb-6"></div>
+
+    <!-- Instruction -->
+    <p class="text-xs text-slate-400 font-light leading-relaxed mb-8 max-w-[32ch]">
+      Complete habits or focus timers on your dashboard to earn credits, then redeem them to temporarily unlock distraction time.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col gap-3 w-full">
+      <button onclick="goToDashboard()" class="w-full bg-violet-600 hover:bg-violet-500 text-white font-semibold py-3 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-violet-500/20 active:scale-98">
+        Open FocusFlow Dashboard
+      </button>
+      <button onclick="window.history.back()" class="w-full border border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold py-3 rounded-xl text-sm transition-all duration-300 active:scale-98">
+        Go Back
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Extract domain from query parameters
+    const params = new URLSearchParams(window.location.search);
+    const domain = params.get('blocked_domain');
+    if (domain) {
+      document.getElementById('blocked-domain').textContent = decodeURIComponent(domain);
+    }
+
+    function goToDashboard() {
+      const dashboardUrl = "file:///home/chandrajit/Documents/netfinance/focusflow.html";
+      window.location.href = dashboardUrl;
+    }
+  </script>
+</body>
+</html>

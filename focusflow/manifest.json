@@ -1,0 +1,18 @@
+{
+  "name": "FocusFlow - Habit & Screen Time Economy",
+  "short_name": "FocusFlow",
+  "description": "Gamify your self-discipline. Earn credits from habits, spend them to unlock distracting apps.",
+  "start_url": "./focusflow.html",
+  "display": "standalone",
+  "background_color": "#080B11",
+  "theme_color": "#8B5CF6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
